@@ -1,0 +1,268 @@
+🧠 Brain MRI Tumor Classification using CNN
+
+A Deep Learning project for classifying Brain MRI images into four classes using Convolutional Neural Networks (CNNs).
+
+📌 Project Overview
+
+This project uses Brain MRI images to classify each image into one of four classes:
+
+Glioma
+
+Meningioma
+
+No Tumor
+
+Pituitary
+
+The dataset contains 2,443 images divided into training, validation, and testing sets:
+
+Split
+
+Images
+
+Training
+
+1,695
+
+Validation
+
+502
+
+Testing
+
+246
+
+Total
+
+2,443
+
+Images are resized to 320 × 320 pixels and processed using TensorFlow/Keras.
+
+🎯 Objective
+
+The main objective is to build and compare multiple CNN architectures and select the model with the best performance on unseen test data.
+
+The project compares:
+
+Baseline CNN
+
+Augmented CNN
+
+Deep CNN with Batch Normalization
+
+🧠 CNN Models
+
+1. Baseline CNN
+
+The Baseline CNN contains three convolutional layers followed by max-pooling, a dense layer, dropout, and a softmax output layer.
+
+The model also performs pixel normalization using:
+
+Rescaling(1./255)
+
+Class weights are used during training to reduce the effect of class imbalance.
+
+2. Augmented CNN
+
+The Augmented CNN adds image augmentation techniques:
+
+Random horizontal flip
+
+Random rotation
+
+Random zoom
+
+This model was designed to improve generalization and reduce overfitting.
+
+3. Deep CNN
+
+The Deep CNN contains additional convolutional layers and Batch Normalization.
+
+This allows the model to learn more complex image features, but the experiment showed that a deeper architecture did not necessarily perform better on this dataset.
+
+📊 Model Performance
+
+The actual test accuracies obtained in the experiment were:
+
+Model
+
+Test Accuracy
+
+Baseline CNN
+
+87.80%
+
+Augmented CNN
+
+65.04%
+
+Deep CNN
+
+32.93%
+
+The Baseline CNN was selected as the final model because it achieved the highest test accuracy.
+
+🔍 Final Model Evaluation
+
+The final model achieved:
+
+Test Accuracy: 87.80%
+
+The confusion matrix was:
+
+[[72, 6, 1, 1],
+ [ 1,50, 8, 4],
+ [ 1, 6,41, 1],
+ [ 0, 1, 0,53]]
+
+The class order is:
+
+0 → glioma
+1 → meningioma
+2 → no_tumor
+3 → pituitary
+
+The model performed particularly well on pituitary images, while meningioma showed more confusion with other classes.
+
+The test set contained:
+
+Glioma: 80
+
+Meningioma: 63
+
+No Tumor: 49
+
+Pituitary: 54
+
+Predicted counts were:
+
+Glioma: 74
+
+Meningioma: 63
+
+No Tumor: 50
+
+Pituitary: 59
+
+This shows that the model was not strongly biased toward the No Tumor class.
+
+🛠️ Technologies Used
+
+Python
+
+NumPy
+
+Pandas
+
+Matplotlib
+
+Seaborn
+
+TensorFlow
+
+Keras
+
+Scikit-learn
+
+Pillow
+
+Streamlit
+
+📂 Project Structure
+
+Brain_Tumour_MRI/
+│
+├── dataset/
+│   ├── train/
+│   ├── valid/
+│   └── test/
+│
+├── ML_Submission_Template-2(3)_completed(1).ipynb
+├── brain_mri_cnn.keras
+├── app.py
+├── requirements.txt
+└── README.md
+
+⚙️ Data Preprocessing
+
+The images are:
+
+Loaded from class-specific folders
+
+Resized to 320 × 320
+
+Converted to RGB
+
+Normalized inside the CNN using Rescaling(1./255)
+
+Batched with batch size 32
+
+Invalid/empty files, duplicate files, and dataset structure were also checked during data preparation.
+
+🚀 Streamlit Application
+
+The trained model is saved as:
+
+brain_mri_cnn.keras
+
+The Streamlit application allows users to upload a Brain MRI image and receive a predicted class with class probabilities.
+
+Run the application
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run:
+
+streamlit run app.py
+
+Make sure app.py and brain_mri_cnn.keras are in the same project directory.
+
+🧪 Example Workflow
+
+Brain MRI Image
+       ↓
+Image Upload
+       ↓
+Resize to 320 × 320
+       ↓
+CNN Model
+       ↓
+Class Probabilities
+       ↓
+Predicted Tumor Class
+
+📈 Key Findings
+
+The Baseline CNN performed best on the test dataset.
+
+Data augmentation reduced test accuracy in this experiment.
+
+Increasing model depth did not improve performance.
+
+Pituitary classification was particularly strong.
+
+Meningioma was the most challenging class.
+
+The final model achieved 87.80% test accuracy.
+
+🔮 Future Improvements
+
+Possible improvements include:
+
+Transfer learning using pretrained CNN architectures
+
+More systematic hyperparameter tuning
+
+Improved data augmentation
+
+Grad-CAM for model explainability
+
+Larger and more diverse datasets
+
+Better handling of difficult meningioma samples
+
+⚠️ Disclaimer
+
+This project is created for educational and learning purposes. The model should not be used as a medical diagnostic system or as a substitute for professional medical advice.
